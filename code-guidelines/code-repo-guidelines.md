@@ -41,7 +41,7 @@ Our filosophy is based on the gitflow model:
 - **dev** is the staging branch
 - **main** is the production branch
 
-Releases are either done
+#### Releases are either done
 
 1.  directly from `dev` to `main`
 
@@ -61,7 +61,7 @@ Releases are either done
 
 We encourage you to use the review tool to keep the feedback written and close to the code, with that said, longer discussions doesn't need to create a mini-twitter-metaverse of course, that's probably a Slack call with screen sharing or something else.
 
-Usually we follow this:
+#### Usually we follow this:
 
 - Author creates the pull request, highly recommended to use the description field to inform your reviewer of the scope of work.
 
