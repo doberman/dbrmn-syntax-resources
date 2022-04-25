@@ -2,6 +2,25 @@
 
 This document aim to describe our general coding standards at Doberman.
 
+## Code filosophy
+
+As we have Daniel Renaissance Man Hägglund in our team, we do also follow the [12 Factor app](https://12factor.net/) filosophy, to various extent.
+
+### [Environment variables](https://12factor.net/config)
+
+Yes, we do all have secrets. And most hosting providers offers good interfaces to manage them too.
+
+We often use `dotenv` for this, avaliable for multiple languages, here's the link to the [npm](https://www.npmjs.com/package/dotenv) module
+
+It's highly recommended to have a `.env.template` in the repository to indicate to your fellow and future colleagues what env variables they should go get
+
+```sh
+# .env.template
+
+CONTENTFUL_ACCESS_TOKEN=
+CONTENTFUL_SPACE_ID=
+```
+
 ## Code management
 
 We're using Github as our primary repository host, for client work and internal work.
@@ -70,9 +89,10 @@ As a foundation for JS/TS:
 
 <details>
 <summary>Click to expand Husky examples</summary>
-.husky/pre-commit
 
-```
+```sh
+# .husky/pre-commit
+
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
@@ -80,9 +100,9 @@ npx lint-staged
 
 ```
 
-.husky/\_/husky.sh
+```sh
+# .husky/\_/husky.sh
 
-```
 #!/bin/sh
 if [ -z "$husky_skip_init" ]; then
   debug () {
@@ -117,9 +137,9 @@ fi
 
 ```
 
-.husky/\_/.gitignore
+```sh
+# .husky/_/.gitignore
 
-```
 *
 ```
 
