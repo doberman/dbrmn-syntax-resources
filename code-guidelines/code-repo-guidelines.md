@@ -2,9 +2,9 @@
 
 This document aim to describe our general coding standards at Doberman.
 
-## Code filosophy
+## Code philosophy
 
-As we have Daniel Renaissance Man Hägglund in our team, we do also follow the [12 Factor app](https://12factor.net/) filosophy, to various extent.
+As we have Daniel Renaissance Man Hägglund in our team, we do also follow the [12 Factor app](https://12factor.net/) philosophy, to various extent.
 
 ### [Environment variables](https://12factor.net/config)
 
@@ -33,7 +33,7 @@ Not all projects are hosted within our organisation, some projects are migrated 
 
 ## Git workflow
 
-Our filosophy is based on the gitflow model:
+Our philosophy is based on the gitflow model:
 
 ![gitflow model](https://miro.medium.com/max/2800/1*9yJY7fyscWFUVRqnx0BM6A.png)
 
