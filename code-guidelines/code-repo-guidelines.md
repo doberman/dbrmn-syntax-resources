@@ -12,9 +12,9 @@ A good rule of thumb is that any colleague should _ideally_ be able to read the 
 
 Make sure to update it when scripts or tools changes along the project.
 
-### [Environment variables](https://12factor.net/config)
+### Environment variables
 
-Yes, we do all have secrets. And most hosting providers offers good interfaces to manage them too.
+Yes, we do all have secrets. We follow the [12 Factor app config](https://12factor.net/config) principle. And most hosting providers offers good interfaces to manage them too.
 
 We often use `dotenv` for this, avaliable for multiple languages, here's the link to the [npm](https://www.npmjs.com/package/dotenv) module
 
@@ -35,7 +35,7 @@ Internal work are ideally prefixed `dbrmn-` to indicate this.
 
 We use topics for repos to enable better discovery between projects, so developers can find projects with a certain framework or tool.
 
-![Example of searching by topic](https://user-images.githubusercontent.com/4181277/166698904-0419aaf4-65cc-462e-bb20-00c30c12dcc0.png)
+<img src="https://user-images.githubusercontent.com/4181277/166698904-0419aaf4-65cc-462e-bb20-00c30c12dcc0.png" alt="Example of searching by topic" width="50%"/>
 
 Not all projects are hosted within our organisation, some projects are migrated to client org before leaving the projects, some are hosted on a client provided organisation or service from start. When migrating a project outside of our organisation and have the legal option to, it's nice to upload a read-only copy of the repository to our organisation, so we can still use the repo as inspiration and for learning purposes.
 
@@ -43,7 +43,9 @@ Not all projects are hosted within our organisation, some projects are migrated 
 
 Our philosophy is based on the gitflow model, but with a twist, link to it [here](https://docs.google.com/presentation/d/1BnyasC1WQQIRx7s9ar9xoyXlHRxLdyt_PEOkr3Z53Mc/edit):
 
-![ci model](https://user-images.githubusercontent.com/4181277/166697547-7e113d0e-f3dc-43c9-acb7-0a55e0a11676.png) ![ci model](https://user-images.githubusercontent.com/4181277/166697568-56deb472-136b-4eca-b3b7-5447089dcbf5.png)
+|                                          Without external stake holders                                           |                                            With external stake holders                                            |
+| :---------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
+| ![ci model](https://user-images.githubusercontent.com/4181277/166697547-7e113d0e-f3dc-43c9-acb7-0a55e0a11676.png) | ![ci model](https://user-images.githubusercontent.com/4181277/166697568-56deb472-136b-4eca-b3b7-5447089dcbf5.png) |
 
 - **Feature branch** every feature branch is based on `dev` branch, and merge to `dev` when approved. Usually prefixed `feaure/{name-of-the-feature}`
 - **Chore branch** every feature branch is based on `dev` branch, and merge to `dev` when approved. Usually prefixed `chore/{name-of-the-chore}`.
@@ -98,62 +100,4 @@ As a foundation for JS/TS:
 
 - For TypeScript, VSCode is having a really good support for linting and highlighting error while coding.
 
-- Husky pre-commit hook is very convenient
-
-<details>
-<summary>Click to expand Husky examples</summary>
-
-```sh
-# .husky/pre-commit
-
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-npx lint-staged
-
-```
-
-```sh
-# .husky/\_/husky.sh
-
-#!/bin/sh
-if [ -z "$husky_skip_init" ]; then
-  debug () {
-    if [ "$HUSKY_DEBUG" = "1" ]; then
-      echo "husky (debug) - $1"
-    fi
-  }
-
-  readonly hook_name="$(basename "$0")"
-  debug "starting $hook_name..."
-
-  if [ "$HUSKY" = "0" ]; then
-    debug "HUSKY env variable is set to 0, skipping hook"
-    exit 0
-  fi
-
-  if [ -f ~/.huskyrc ]; then
-    debug "sourcing ~/.huskyrc"
-    . ~/.huskyrc
-  fi
-
-  export readonly husky_skip_init=1
-  sh -e "$0" "$@"
-  exitCode="$?"
-
-  if [ $exitCode != 0 ]; then
-    echo "husky - $hook_name hook exited with code $exitCode (error)"
-  fi
-
-  exit $exitCode
-fi
-
-```
-
-```sh
-# .husky/_/.gitignore
-
-*
-```
-
-</details>
+- Husky is very handy to define git hook related business, like linting pre-commit
